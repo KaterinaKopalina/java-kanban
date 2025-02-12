@@ -1,10 +1,10 @@
 import java.util.Objects;
+class Task {
 
-public class Task {
-    private String name;
-    private String description;
-    private Status status;
-    private int id;
+    protected String name;
+    protected String description;
+    protected Status status;
+    protected int id;
 
 
     public Task(String name, String description) {
@@ -13,16 +13,16 @@ public class Task {
         this.status = Status.NEW;
     }
 
-    public Task(int id, String name, String description, Status status) {
-        this.id = id;
+    public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
         this.status = status;
     }
 
-    public String getName() {
+   public String getName() {
         return name;
-    }
+   }
+
 
     public void setName(String name) {
         this.name = name;
