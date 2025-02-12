@@ -64,7 +64,9 @@ public class TaskManager {
         if (epicID == 0 || !epics.containsKey(epicID)) {
             return null;
         }
-        epics.put(epic.getId(), epic);
+        Epic saved = epics.get(epic.getId());
+        saved.setName(epic.getName());
+        saved.setDescription(epic.getDescription());
         return epic;
     }
 
