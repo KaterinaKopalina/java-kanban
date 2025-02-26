@@ -1,14 +1,20 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import model.Epic;
+import model.Status;
+import model.Subtask;
+import model.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.AfterEach;
-import java.util.ArrayList;
-import java.util.HashMap;
+import service.InMemoryTaskManager;
+import service.Managers;
+import service.TaskManager;
+
+import java.util.List;
 
 
-public class InMemoryTaskManagerTest {
-    TaskManager taskManager = new InMemoryTaskManager();    //Получение менеджера задач
+public class InMemoryTaskManagerTest { TaskManager taskManager = new InMemoryTaskManager();    //Получение менеджера задач
     Task task1 = new Task("NewTask1", "NewTask1 description", Status.NEW);
     Task task2 = new Task("NewTask2", "NewTask2 description", Status.NEW);
     Epic epic1 = new Epic("NewEpic1", "NewEpic1 description");
@@ -34,7 +40,7 @@ void beforeEach() {
         assertEquals(task1, savedTask, "Задачи не совпадают.");
         assertEquals(3, task2.getId(), "Id не совпадают.");
 
-        final ArrayList<Task> tasks = taskManager.getTasks();
+        final List<Task> tasks = taskManager.getTasks();
 
 
         assertNotNull(tasks, "Задачи не возвращаются.");
@@ -54,7 +60,7 @@ void beforeEach() {
         assertNotNull(savedEpic, "Эпик не найден.");
         assertEquals(epic1, savedEpic, "Эпики не совпадают.");
 
-        final ArrayList<Epic> epics = taskManager.getEpics();
+        final List<Epic> epics = taskManager.getEpics();
 
         assertNotNull(epics, "Эпики не возвращаются.");
         assertEquals(1, epics.size(), "Неверное количество задач.");
@@ -65,7 +71,7 @@ void beforeEach() {
     void addNewSubtask() {
        Epic thisEpic = taskManager.addEpic(epic2);
        Subtask thisSubtask = taskManager.addSubtask(subtask21);
-        ArrayList<Subtask> listOfSubtask = taskManager.getSubtaskByEpic(thisEpic.getId());
+        List<Subtask> listOfSubtask = taskManager.getSubtaskByEpic(thisEpic.getId());
 
         assertNotNull(listOfSubtask, "Подзадачи не возвращаются.");
         assertEquals(subtask21, listOfSubtask.get(0), "Подзадачи не совпадают.");
@@ -77,7 +83,7 @@ void beforeEach() {
     void TaskCreatedAndTaskAddedShouldHaveSameVariables() {
         Task expected = new Task("Помыть полы", "С новым средством", Status.DONE);
         taskManager.addTask(expected);
-        ArrayList<Task> list = taskManager.getTasks();
+        List<Task> list = taskManager.getTasks();
         Task actual = list.getFirst();
         assertEquals(expected.getId(), actual.getId());
         assertEquals(expected.getName(), actual.getName());

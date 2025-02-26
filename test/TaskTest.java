@@ -1,4 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import model.Status;
+import model.Task;
 import org.junit.jupiter.api.Test;
 
 class TaskTest {
@@ -11,6 +14,6 @@ class TaskTest {
         task2.setId(1);
         boolean value = task1.equals(task2);
         assertTrue(value,
-                "Ошибка! Экземпляры класса Task должны быть равны друг другу, если равен их id;");
+                "Ошибка! Экземпляры класса model.Task должны быть равны друг другу, если равен их id;");
     }
 }

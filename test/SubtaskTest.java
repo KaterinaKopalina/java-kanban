@@ -1,4 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
+
+import model.Subtask;
 import org.junit.jupiter.api.Test;
 
 class SubtaskTest {
@@ -12,7 +14,7 @@ class SubtaskTest {
 
         boolean value = subtask1.equals(subtask2);
         assertTrue(value,
-                "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
+                "Ошибка! Наследники класса model.Task должны быть равны друг другу, если равен их id;");
     }
 
   

@@ -1,18 +1,26 @@
+package service;
+
+
+import model.Epic;
+import model.Status;
+import model.Subtask;
+import model.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
-        private final HashMap<Integer, Task> tasks = new HashMap<>();
-        private final HashMap<Integer, Epic> epics = new HashMap<>();
-        private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
+        private final Map<Integer, Task> tasks = new HashMap<>();
+        private final Map<Integer, Epic> epics = new HashMap<>();
+        private final Map<Integer, Subtask> subtasks = new HashMap<>();
 
         private final HistoryManager historyManager = Managers.getDefaultHistory();
 
         private int numberId = 1;
 
-
-        public int getNumberId() {
+        private int getNumberId() {
             return numberId++;
         }
 
@@ -101,10 +109,8 @@ public class InMemoryTaskManager implements TaskManager {
         @Override
         public Task getTaskByID(int id) {
             Task task = tasks.get(id);
-            if (task != null && tasks.containsKey(id)) {
+            if (task != null) {
                 historyManager.add(task);
-            } else {
-                return null;
             }
             return task;
         }
@@ -112,10 +118,8 @@ public class InMemoryTaskManager implements TaskManager {
         @Override
         public Epic getEpicByID(int id) {
             Epic epic = epics.get(id);
-            if (epic != null && epics.containsKey(id)) {
+            if (epic != null) {
                 historyManager.add(epic);
-            } else {
-                return null;
             }
             return epic;
         }
@@ -123,10 +127,8 @@ public class InMemoryTaskManager implements TaskManager {
         @Override
         public Subtask getSubtaskByID(int id) {
             Subtask subtask = subtasks.get(id);
-            if (subtask != null && subtasks.containsKey(id)) {
+            if (subtask != null) {
                 historyManager.add(subtask);
-            } else {
-                return null;
             }
             return subtask;
         }
@@ -210,7 +212,7 @@ public class InMemoryTaskManager implements TaskManager {
             return historyManager.getHistory();
         }
 
-        public void updateStatusEpic(Epic epic) {
+        private void updateStatusEpic(Epic epic) {
             int allIsDoneCount = 0;
             int allIsInNewCount = 0;
             ArrayList<Subtask> list = epic.getSubtaskList();

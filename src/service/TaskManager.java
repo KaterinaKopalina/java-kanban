@@ -1,4 +1,9 @@
-import java.util.ArrayList;
+package service;
+
+import model.Epic;
+import model.Subtask;
+import model.Task;
+
 import java.util.List;
 
 public interface TaskManager {
@@ -27,13 +32,13 @@ public interface TaskManager {
 
     Subtask getSubtaskByID(int id);
 
-    ArrayList<Task> getTasks();
+    List<Task> getTasks();
 
-    ArrayList<Epic> getEpics();
+    List<Epic> getEpics();
 
-    ArrayList<Subtask> getSubtasks();
+    List<Subtask> getSubtasks();
 
-    ArrayList<Subtask> getSubtaskByEpic(int epicId);
+    List<Subtask> getSubtaskByEpic(int epicId);
 
     void deleteTasks();
 

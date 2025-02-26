@@ -1,4 +1,7 @@
+
 import static org.junit.jupiter.api.Assertions.*;
+
+import model.Epic;
 import org.junit.jupiter.api.Test;
 
 class EpicTest {
@@ -11,7 +14,7 @@ class EpicTest {
         epic2.setId(1);
         boolean value = epic1.equals(epic2);
         assertTrue(value,
-                "Ошибка! Наследники класса Task должны быть равны друг другу, если равен их id;");
+                "Ошибка! Наследники класса model.Task должны быть равны друг другу, если равен их id;");
     }
 
 }
