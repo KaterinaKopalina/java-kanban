@@ -12,19 +12,20 @@ public class InMemoryHistoryManager implements HistoryManager {
     private Node<Task> head;
     private Node<Task> tail;
 
-    public Node<Task> linkLast(Task task) {
+    private Node<Task> linkLast(Task task) {
         Node<Task> lastNode = tail;
         Node<Task> newNode = new Node(tail, task, null);
         if (lastNode == null) {
             head = newNode;
-            tail = newNode;
-            newNode.setPrev(null);
-            newNode.setNext(null);
+            // tail = newNode;
+            // newNode.setPrev(null);
+            //  newNode.setNext(null);
         } else {
             lastNode.setNext(newNode);
             newNode.setPrev(lastNode);
-            tail = newNode;
+            // tail = newNode;
         }
+        tail = newNode;
         return newNode;
     }
 
@@ -40,17 +41,23 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void add(Task task) {
-        Node node;
-        if (nodesMap.isEmpty()) {
-            node = linkLast(task);
-            nodesMap.put(task.getId(), node);
-        } else if (!nodesMap.containsKey((task.getId()))) {
-            nodesMap.put(task.getId(), linkLast(task));
-        } else {
-            removeNode(nodesMap.get(task.getId()));
-            nodesMap.put(task.getId(), linkLast(task));
+        // Node node;
+        // if (nodesMap.isEmpty()) {
+        //  node = linkLast(task);
+        //    nodesMap.put(task.getId(), linkLast(task));
+        // } else if (!nodesMap.containsKey((task.getId()))) {
+        //   nodesMap.put(task.getId(), linkLast(task));
+        // } else {
+        if (task == null)
+            return;
+        if (nodesMap.containsKey(task.getId())) {
+            remove(task.getId());
         }
+        nodesMap.put(task.getId(), linkLast(task));
     }
+    //  removeNode(nodesMap.get(task.getId()));
+    //  nodesMap.put(task.getId(), linkLast(task));
+
 
     @Override
     public void remove(int id) {
@@ -85,6 +92,3 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 }
-
-
-

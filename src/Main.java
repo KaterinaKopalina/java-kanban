@@ -13,8 +13,8 @@ public class Main {
 
         Task task1 = new Task("Купить телефон", "Не дороже 20000 руб");
         Task task2 = new Task("Решить контрольную", "По математике");
-        taskManager.addTask(task2);
         taskManager.addTask(task1);
+        taskManager.addTask(task2);
 
         Epic goOnHoliday = new Epic("Поехать на отдых", "Летний отпуск");
         taskManager.addEpic(goOnHoliday);
@@ -37,17 +37,26 @@ public class Main {
         taskManager.addSubtask(buyCat1);
         taskManager.addSubtask(buyCat2);
 
-        taskManager.getEpicByID(3);
-        taskManager.getTaskByID(2);
+       // taskManager.getEpicByID(3);
         taskManager.getTaskByID(1);
+        taskManager.getTaskByID(2);
         taskManager.getEpicByID(3);
         taskManager.getSubtaskByID(4);
         taskManager.getSubtaskByID(5);
         taskManager.getSubtaskByID(6);
-        taskManager.deleteTaskByID(1);
-        taskManager.deleteSubtaskByID(6);
 
+
+
+        taskManager.printAllTask();
         System.out.println(taskManager.getHistory());
+
+   taskManager.deleteTasks();
+       // taskManager.deleteEpics();
+       taskManager.deleteSubtasks();
+        taskManager.printAllTask();
+        System.out.println(taskManager.getHistory());
+
+
 
 
     }
