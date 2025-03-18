@@ -14,6 +14,14 @@ import java.util.List;
 
 class InMemoryHistoryManagerTest {
     private static TaskManager taskManager;
+    Task task1 = new Task("Помыть полы", "С новым средством");
+    Task task2 = new Task("NewTask2", "NewTask2 description", Status.NEW);
+    Epic epic1 = new Epic("NewEpic1", "NewEpic1 description");
+    Subtask subtask11 = new Subtask("NewSubtask11", "NewSubtask11 description", 3);
+    Subtask subtask12 = new Subtask("NewSubtask12", "NewSubtask12 description", 3);
+    Epic epic2 = new Epic("NewEpic2", "NewEpic2 description");
+    Subtask subtask21 = new Subtask("NewSubtask21", "NewSubtask21 description", 4);
+
 
     @BeforeEach
     public void beforeEach() {
@@ -21,18 +29,45 @@ class InMemoryHistoryManagerTest {
     }
 
     @Test
-    public void getHistoryShouldReturnL10Tasks() {
-        for (int i = 0; i < 15; i++) {
-            taskManager.addTask(new Task("Задача", "Расшифровка"));
-        }
+    public void getHistoryShoulAddTask() {
+        taskManager.addTask(task1);
+        taskManager.addTask(task2);
+        taskManager.getTaskByID(1);
+        taskManager.getTaskByID(2);
+        taskManager.getTaskByID(2);
+        taskManager.addEpic(epic1);
+        taskManager.getEpicByID(epic1.getId());
+        taskManager.addSubtask(subtask11);
+        taskManager.getSubtaskByID(subtask11.getId());
+        List<Task> tasks = taskManager.getHistory();
+        assertEquals(4, tasks.size(), "Количество задач в истории не верное!");
+    }
 
-        List<Task> tasks = taskManager.getTasks();
-        for (Task task : tasks) {
-            taskManager.getTaskByID(task.getId());
-        }
+    @Test
+    public void getHistoryDelete() {
+      taskManager.addTask(task1);
+      taskManager.getTaskByID(task1.getId());
 
-        List<Task> list = taskManager.getHistory();
-        assertEquals(10, list.size(), "Неверное количество элементов в истории ");
+      taskManager.addTask(task2);
+      taskManager.getTaskByID(task2.getId());
+
+      taskManager.addEpic(epic1);
+      taskManager.getEpicByID(epic1.getId());
+
+      taskManager.addEpic(epic2);
+      taskManager.getEpicByID(epic2.getId());
+      taskManager.addSubtask(subtask11);
+      taskManager.addSubtask(subtask12);
+      taskManager.addSubtask(subtask21);
+      taskManager.getSubtaskByID(subtask11.getId());
+      taskManager.getSubtaskByID(subtask12.getId());
+      taskManager.getSubtaskByID(subtask21.getId());
+
+      taskManager.deleteTaskByID(1);
+      taskManager.deleteEpicByID(3);
+
+      List<Task> tasks = taskManager.getHistory();
+      assertEquals(3, tasks.size(), "Количество задач не совпадает!");
     }
 
     @Test
@@ -41,7 +76,7 @@ class InMemoryHistoryManagerTest {
         taskManager.addTask(task1);
         taskManager.getTaskByID(task1.getId());
         taskManager.updateTask(new Task("Не забыть помыть полы",
-                "Можно средства", Status.IN_PROGRESS));
+                "Можно без средства", Status.IN_PROGRESS));
         List<Task> tasks = taskManager.getHistory();
         Task oldTask = tasks.getFirst();
         assertEquals(task1.getName(), oldTask.getName(), "В истории не сохранилась старая версия задачи");

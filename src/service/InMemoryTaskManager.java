@@ -18,6 +18,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         private final HistoryManager historyManager = Managers.getDefaultHistory();
 
+
         private int numberId = 1;
 
         private int getNumberId() {
@@ -134,7 +135,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         @Override
-        public ArrayList<Task> getTasks() {
+        public List<Task> getTasks() {
             return new ArrayList<>(tasks.values());
         }
 
@@ -179,6 +180,7 @@ public class InMemoryTaskManager implements TaskManager {
         @Override
         public void deleteTaskByID(int id) {
             tasks.remove(id);
+            historyManager.remove(id);
         }
 
         @Override
@@ -188,8 +190,10 @@ public class InMemoryTaskManager implements TaskManager {
             }
             ArrayList<Subtask> epicSubtasks = epics.get(id).getSubtaskList();
             epics.remove(id);
+            historyManager.remove(id);
             for (Subtask subtask : epicSubtasks) {
                 subtasks.remove(subtask.getId());
+                historyManager.remove(subtask.getId());
             }
         }
 
@@ -201,15 +205,16 @@ public class InMemoryTaskManager implements TaskManager {
             Subtask subtask = subtasks.get(id);
             int epicID = subtask.getIdEpic();
             subtasks.remove(id);
+            historyManager.remove(id);
             // обновляем список подзадач и статус эпика
             Epic epic = epics.get(epicID);
             epic.deleteSubtask(subtask);
             updateStatusEpic(epic);
         }
 
-        @Override
-        public List<Task> getHistory() {
-            return historyManager.getHistory();
+            @Override
+            public List<Task> getHistory() {
+            return  historyManager.getHistory();
         }
 
         private void updateStatusEpic(Epic epic) {
