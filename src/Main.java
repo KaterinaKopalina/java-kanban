@@ -9,12 +9,12 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Поехали!");
-      TaskManager taskManager = new InMemoryTaskManager();
+        TaskManager taskManager = new InMemoryTaskManager();
 
-      Task task1 = new Task ("Купить телефон", "Не дороже 20000 руб");
-      Task task2 = new Task ("Решить контрольную", "По математике");
-      taskManager.addTask(task2);
-      taskManager.addTask(task1);
+        Task task1 = new Task("Купить телефон", "Не дороже 20000 руб");
+        Task task2 = new Task("Решить контрольную", "По математике");
+        taskManager.addTask(task2);
+        taskManager.addTask(task1);
 
         Epic goOnHoliday = new Epic("Поехать на отдых", "Летний отпуск");
         taskManager.addEpic(goOnHoliday);
@@ -37,21 +37,19 @@ public class Main {
         taskManager.addSubtask(buyCat1);
         taskManager.addSubtask(buyCat2);
 
-       taskManager.getEpicByID(3);
-       taskManager.getTaskByID(2);
-       taskManager.getTaskByID(1);
-       taskManager.getEpicByID(3);
-       taskManager.getSubtaskByID(4);
-       taskManager.getSubtaskByID(5);
-       taskManager.getSubtaskByID(6);
-       taskManager.deleteTaskByID(1);
-       taskManager.deleteSubtaskByID(6);
+        taskManager.getEpicByID(3);
+        taskManager.getTaskByID(2);
+        taskManager.getTaskByID(1);
+        taskManager.getEpicByID(3);
+        taskManager.getSubtaskByID(4);
+        taskManager.getSubtaskByID(5);
+        taskManager.getSubtaskByID(6);
+        taskManager.deleteTaskByID(1);
+        taskManager.deleteSubtaskByID(6);
 
         System.out.println(taskManager.getHistory());
 
 
-
-
     }
-    }
+}
 

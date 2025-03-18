@@ -45,29 +45,29 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void getHistoryDelete() {
-      taskManager.addTask(task1);
-      taskManager.getTaskByID(task1.getId());
+        taskManager.addTask(task1);
+        taskManager.getTaskByID(task1.getId());
 
-      taskManager.addTask(task2);
-      taskManager.getTaskByID(task2.getId());
+        taskManager.addTask(task2);
+        taskManager.getTaskByID(task2.getId());
 
-      taskManager.addEpic(epic1);
-      taskManager.getEpicByID(epic1.getId());
+        taskManager.addEpic(epic1);
+        taskManager.getEpicByID(epic1.getId());
 
-      taskManager.addEpic(epic2);
-      taskManager.getEpicByID(epic2.getId());
-      taskManager.addSubtask(subtask11);
-      taskManager.addSubtask(subtask12);
-      taskManager.addSubtask(subtask21);
-      taskManager.getSubtaskByID(subtask11.getId());
-      taskManager.getSubtaskByID(subtask12.getId());
-      taskManager.getSubtaskByID(subtask21.getId());
+        taskManager.addEpic(epic2);
+        taskManager.getEpicByID(epic2.getId());
+        taskManager.addSubtask(subtask11);
+        taskManager.addSubtask(subtask12);
+        taskManager.addSubtask(subtask21);
+        taskManager.getSubtaskByID(subtask11.getId());
+        taskManager.getSubtaskByID(subtask12.getId());
+        taskManager.getSubtaskByID(subtask21.getId());
 
-      taskManager.deleteTaskByID(1);
-      taskManager.deleteEpicByID(3);
+        taskManager.deleteTaskByID(1);
+        taskManager.deleteEpicByID(3);
 
-      List<Task> tasks = taskManager.getHistory();
-      assertEquals(3, tasks.size(), "Количество задач не совпадает!");
+        List<Task> tasks = taskManager.getHistory();
+        assertEquals(3, tasks.size(), "Количество задач не совпадает!");
     }
 
     @Test

@@ -21,11 +21,11 @@ public class Subtask extends Task {
     @Override
     public String toString() {
         return "model.Subtask{" +
-            "name='" + getName() + '\'' +
-                    ", description='" + getDescription() + '\'' +
-                    ", id=" + getId() +
-                    ", epicID=" + idEpic +
-                    ", status=" + getStatus() +
-                    '}';
+                "name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", id=" + getId() +
+                ", epicID=" + idEpic +
+                ", status=" + getStatus() +
+                '}';
     }
 }

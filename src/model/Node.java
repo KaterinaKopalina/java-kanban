@@ -1,6 +1,6 @@
 package model;
 
-public class Node <N> {
+public class Node<N> {
     private N item;
     private Node<N> next;
     private Node<N> prev;

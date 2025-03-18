@@ -22,9 +22,9 @@ public class Task {
         this.status = status;
     }
 
-   public String getName() {
+    public String getName() {
         return name;
-   }
+    }
 
 
     public void setName(String name) {
@@ -74,7 +74,7 @@ public class Task {
                 "id=" + id +
                 ", status=" + status +
                 ", name='" + name + '\'' +
-        ", description='" + description + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

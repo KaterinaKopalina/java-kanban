@@ -8,7 +8,7 @@ class EpicTest {
 
     @Test
     public void EpicsWithEqualIdShouldBeEqual() {
-        Epic epic1 = new Epic ("Сделать ремонт", "На кухне");
+        Epic epic1 = new Epic("Сделать ремонт", "На кухне");
         Epic epic2 = new Epic("Сделать ремонт", "На кухне");
         epic1.setId(1);
         epic2.setId(1);
