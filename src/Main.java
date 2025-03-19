@@ -37,7 +37,6 @@ public class Main {
         taskManager.addSubtask(buyCat1);
         taskManager.addSubtask(buyCat2);
 
-       // taskManager.getEpicByID(3);
         taskManager.getTaskByID(1);
         taskManager.getTaskByID(2);
         taskManager.getEpicByID(3);
@@ -46,17 +45,14 @@ public class Main {
         taskManager.getSubtaskByID(6);
 
 
-
         taskManager.printAllTask();
         System.out.println(taskManager.getHistory());
 
-   taskManager.deleteTasks();
-       // taskManager.deleteEpics();
-       taskManager.deleteSubtasks();
+        taskManager.deleteTasks();
+
+        taskManager.deleteSubtasks();
         taskManager.printAllTask();
         System.out.println(taskManager.getHistory());
-
-
 
 
     }
