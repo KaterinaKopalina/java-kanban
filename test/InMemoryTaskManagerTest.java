@@ -14,7 +14,8 @@ import service.TaskManager;
 import java.util.List;
 
 
-public class InMemoryTaskManagerTest { TaskManager taskManager = new InMemoryTaskManager();    //Получение менеджера задач
+public class InMemoryTaskManagerTest {
+    TaskManager taskManager = new InMemoryTaskManager();    //Получение менеджера задач
     Task task1 = new Task("NewTask1", "NewTask1 description", Status.NEW);
     Task task2 = new Task("NewTask2", "NewTask2 description", Status.NEW);
     Epic epic1 = new Epic("NewEpic1", "NewEpic1 description");
@@ -23,10 +24,11 @@ public class InMemoryTaskManagerTest { TaskManager taskManager = new InMemoryTas
     Epic epic2 = new Epic("NewEpic2", "NewEpic2 description");
     Subtask subtask21 = new Subtask("NewSubtask21", "NewSubtask21 description", 1);
 
-@BeforeEach
-void beforeEach() {
-    taskManager = Managers.getDefault();
-}
+    @BeforeEach
+    void beforeEach() {
+        taskManager = Managers.getDefault();
+    }
+
     @Test
     void addNewTask() {
         taskManager.addTask(task1);
@@ -69,8 +71,8 @@ void beforeEach() {
 
     @Test
     void addNewSubtask() {
-       Epic thisEpic = taskManager.addEpic(epic2);
-       Subtask thisSubtask = taskManager.addSubtask(subtask21);
+        Epic thisEpic = taskManager.addEpic(epic2);
+        Subtask thisSubtask = taskManager.addSubtask(subtask21);
         List<Subtask> listOfSubtask = taskManager.getSubtaskByEpic(thisEpic.getId());
 
         assertNotNull(listOfSubtask, "Подзадачи не возвращаются.");
