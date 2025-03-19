@@ -50,7 +50,7 @@ public class Main {
 
         taskManager.deleteTasks();
 
-        taskManager.deleteSubtasks();
+        taskManager.deleteEpics();
         taskManager.printAllTask();
         System.out.println(taskManager.getHistory());
 

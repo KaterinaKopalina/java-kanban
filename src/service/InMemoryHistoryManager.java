@@ -67,14 +67,12 @@ public class InMemoryHistoryManager implements HistoryManager {
             head = next;
         } else {
             prev.setNext(next);
-            node.setPrev(null);
         }
 
         if (next == null) {
             tail = prev;
         } else {
             next.setPrev(prev);
-            node.setNext(null);
         }
     }
 }
