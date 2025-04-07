@@ -26,7 +26,6 @@ public class Task {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -61,11 +60,6 @@ public class Task {
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, description, status, id);
     }
 
     @Override
