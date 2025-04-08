@@ -1,22 +1,72 @@
 import model.Task;
 import model.Epic;
 import model.Subtask;
-import service.InMemoryTaskManager;
-import service.TaskManager;
+import service.FileBackedTaskManager;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         System.out.println("Поехали!");
-        TaskManager taskManager = new InMemoryTaskManager();
+        File newFile = File.createTempFile("test", ".csv");
+        FileBackedTaskManager manager = new FileBackedTaskManager(newFile);
+
+        //  TaskManager taskManager = new InMemoryTaskManager();
 
         Task task1 = new Task("Купить телефон", "Не дороже 20000 руб");
         Task task2 = new Task("Решить контрольную", "По математике");
-        taskManager.addTask(task1);
-        taskManager.addTask(task2);
-
+        manager.addTask(task1);
+        manager.addTask(task2);
+        manager.getTaskByID(1);
+        manager.printAllTask();
         Epic goOnHoliday = new Epic("Поехать на отдых", "Летний отпуск");
+        manager.addEpic(goOnHoliday);
+        Subtask goOnHolidaySubtask1 = new Subtask("Купить чемодан", "Не дороже 3000 р.",
+                3);
+        Subtask goOnHolidaySubtask2 = new Subtask("Купить путевки", "В Турцию",
+                goOnHoliday.getId());
+        Subtask goOnHolidaySubtask3 = new Subtask("Снять деньги со счета", "В банке", goOnHoliday.getId());
+        manager.addSubtask(goOnHolidaySubtask1);
+        manager.addSubtask(goOnHolidaySubtask2);
+        manager.addSubtask(goOnHolidaySubtask3);
+
+
+        // manager.loadFromFile(newFile);
+
+        System.out.println(Files.readString(newFile.toPath()));
+
+        manager = FileBackedTaskManager.loadFromFile(newFile);
+        List<Task> tasks = manager.getTasks();
+        System.out.println(tasks);
+        manager.printAllEpic();
+
+        Epic goOnHoliday1 = new Epic("Поехать", "отпуск1");
+        manager.addEpic(goOnHoliday1);
+        manager.printAllEpic();
+
+        System.out.println(Files.readString(newFile.toPath()));
+        manager = FileBackedTaskManager.loadFromFile(newFile);
+        List<Epic> epiks = manager.getEpics();
+        List<Subtask> subtasks = manager.getSubtasks();
+        System.out.println(epiks);
+        System.out.println(tasks);
+
+        System.out.println(subtasks);
+
+        System.out.println(manager.getSubtaskByEpic(3));
+
+
+
+
+
+
+
+     /*   Epic goOnHoliday = new Epic("Поехать на отдых", "Летний отпуск");
         taskManager.addEpic(goOnHoliday);
 
         Subtask goOnHolidaySubtask1 = new Subtask("Купить чемодан", "Не дороже 3000 р.",
@@ -52,7 +102,7 @@ public class Main {
 
         taskManager.deleteEpics();
         taskManager.printAllTask();
-        System.out.println(taskManager.getHistory());
+        System.out.println(taskManager.getHistory()); */
 
 
     }

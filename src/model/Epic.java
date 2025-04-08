@@ -27,6 +27,10 @@ public class Epic extends Task {
         subtaskList.remove(subtask);
     }
 
+    public TaskType getType() {
+        return TaskType.EPIC;
+    }
+
 
     public String toString() {
         return "model.Epic{"
