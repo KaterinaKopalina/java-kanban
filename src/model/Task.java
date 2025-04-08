@@ -54,6 +54,10 @@ public class Task {
         this.id = id;
     }
 
+    public TaskType getType() {
+        return TaskType.TASK;
+    }
+
 
     @Override
     public boolean equals(Object o) {

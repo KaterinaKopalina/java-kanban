@@ -28,7 +28,13 @@ public class Main {
         manager.addEpic(goOnHoliday);
         Subtask goOnHolidaySubtask1 = new Subtask("Купить чемодан", "Не дороже 3000 р.",
                 3);
+        Subtask goOnHolidaySubtask2 = new Subtask("Купить путевки", "В Турцию",
+                goOnHoliday.getId());
+        Subtask goOnHolidaySubtask3 = new Subtask("Снять деньги со счета", "В банке", goOnHoliday.getId());
         manager.addSubtask(goOnHolidaySubtask1);
+        manager.addSubtask(goOnHolidaySubtask2);
+        manager.addSubtask(goOnHolidaySubtask3);
+
 
         // manager.loadFromFile(newFile);
 
@@ -37,6 +43,23 @@ public class Main {
         manager = FileBackedTaskManager.loadFromFile(newFile);
         List<Task> tasks = manager.getTasks();
         System.out.println(tasks);
+        manager.printAllEpic();
+
+        Epic goOnHoliday1 = new Epic("Поехать", "отпуск1");
+        manager.addEpic(goOnHoliday1);
+        manager.printAllEpic();
+
+        System.out.println(Files.readString(newFile.toPath()));
+        manager = FileBackedTaskManager.loadFromFile(newFile);
+        List<Epic> epiks = manager.getEpics();
+        List<Subtask> subtasks = manager.getSubtasks();
+        System.out.println(epiks);
+        System.out.println(tasks);
+
+        System.out.println(subtasks);
+
+        System.out.println(manager.getSubtaskByEpic(3));
+
 
 
 

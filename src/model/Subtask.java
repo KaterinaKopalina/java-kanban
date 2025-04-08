@@ -17,6 +17,10 @@ public class Subtask extends Task {
         return idEpic;
     }
 
+    public TaskType getType() {
+        return TaskType.SUBTASK;
+    }
+
 
     @Override
     public String toString() {
