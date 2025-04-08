@@ -20,7 +20,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     private int numberId = 1;
 
-    protected int getNumberId() {
+    private int getNumberId() {
         return numberId++;
     }
 
