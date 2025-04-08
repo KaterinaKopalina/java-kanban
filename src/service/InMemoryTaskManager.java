@@ -20,11 +20,11 @@ public class InMemoryTaskManager implements TaskManager {
 
     private int numberId = 1;
 
-    private int getNumberId() {
+    protected int getNumberId() {
         return numberId++;
     }
 
-    public void setNumberId(int numberId) {
+    protected void setNumberId(int numberId) {
         this.numberId = numberId;
     }
 
